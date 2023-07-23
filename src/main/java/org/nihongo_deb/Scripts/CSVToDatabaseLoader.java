@@ -48,7 +48,7 @@ public class CSVToDatabaseLoader {
         this.SQL = SQL;
         this.mapper = loaderMapper;
     }
-
+    //TODO: 22.07.23 use batch update
     public void loadInDatabase(long capacity) throws SQLException {
         double delta = (double) (allCSV.size() - 1) / capacity;
         if(delta < 1){
@@ -56,16 +56,26 @@ public class CSVToDatabaseLoader {
             return;
         }
 
+        execute(capacity);
+    }
+
+    public void loadInDatabase() throws SQLException {
+        execute(allCSV.size());
+    }
+
+    private void execute(long capacity) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(SQL);
-        for (int i = 1; i < capacity; i++){
-            int csvIndex = (int) (i + delta);
-            String[] newRaw = removeDoubleQuotes(allCSV.get(csvIndex)[0].split(";"));
+        for (int i = 1; i < capacity; i++){;
+            String[] newRaw = removeDoubleQuotes(allCSV.get(i)[0].split(";"));
             try {
                 mapper.map(statement, newRaw);
             } catch (Throwable e){
                 for (Class exeptionClass : throwables){
                     if (e.getClass().equals(exeptionClass)){
                         continue;
+                    }
+                    else {
+                        throw e;
                     }
                 }
             }

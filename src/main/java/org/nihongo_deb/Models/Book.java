@@ -1,11 +1,14 @@
 package org.nihongo_deb.Models;
 
+import java.util.UUID;
+
 /**
  * @author KAWAIISHY
  * @project LibrarySpringMVC
  * @created 05.07.2023
  */
 public class Book {
+    private UUID id;
     private String title;
     private String author;
     private int publicationYear;
@@ -21,6 +24,14 @@ public class Book {
         this.publicationYear = publicationYear;
         this.publisher = publisher;
         this.reader = reader;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getTitle() {
