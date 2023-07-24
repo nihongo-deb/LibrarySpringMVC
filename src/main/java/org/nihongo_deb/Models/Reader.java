@@ -103,11 +103,17 @@ public class Reader {
     }
 
     public static class ReaderBuilder {
+        private UUID id = UUID.randomUUID();
         private String fio = "LastName FirstName Patronymic";
         private String email = "null@null.null";
         private String phone = "+00000000000";
         private String birthday = "01.01.2500";
         private List<Book> books = new ArrayList<>();
+
+        public ReaderBuilder id(UUID id){
+            this.id = id;
+            return this;
+        }
 
         public ReaderBuilder fio(String fio){
             this.fio = fio;
@@ -135,7 +141,9 @@ public class Reader {
         }
 
         public Reader build(){
-            return new Reader(fio, email, phone, birthday, books);
+            Reader reader = new Reader(fio, email, phone, birthday, books);
+            reader.setId(this.id);
+            return reader;
         }
     }
 }

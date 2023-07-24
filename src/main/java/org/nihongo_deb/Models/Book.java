@@ -90,11 +90,17 @@ public class Book {
     }
 
     public static class BookBuilder {
+        private UUID id = UUID.randomUUID();
         private String title = "no title";
         private String author = "no author";
         private int publicationYear = -1;
         private String publisher = "no publisher";
         private Reader reader = null;
+
+        public BookBuilder id (UUID id){
+            this.id = id;
+            return this;
+        }
 
         public BookBuilder title(String title){
             this.title = title;
@@ -122,7 +128,9 @@ public class Book {
         }
 
         public Book build(){
-            return new Book(title, author, publicationYear, publisher, reader);
+            Book book = new Book(title, author, publicationYear, publisher, reader);
+            book.setId(this.id);
+            return book;
         }
     }
 }
