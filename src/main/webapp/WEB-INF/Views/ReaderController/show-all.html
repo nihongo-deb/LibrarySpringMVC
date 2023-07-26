@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Readers</title>
+</head>
+<body>
+<br>
+<a href="http://localhost:8080/library/readers/new">Add new reader</a>
+<br>
+<table border="2">
+  <tr>
+    <th>FIO</th>
+    <th>EMAIL</th>
+    <th>PHONE</th>
+    <th>BIRTHDAY</th>
+  </tr>
+
+  <tr th:each="reader : ${readers}">
+    <td>
+        <a th:text="${reader.getFio()}" th:href="@{http://localhost:8080/library/readers/{id}(id=${reader.getId()})}"></a>
+    </td>
+    <td th:text="${reader.getEmail()}"> </td>
+    <td th:text="${reader.getPhone()}"> </td>
+    <td th:text="${reader.getBirthday()}"> </td>
+  </tr>
+</table>
+</body>
+</html>

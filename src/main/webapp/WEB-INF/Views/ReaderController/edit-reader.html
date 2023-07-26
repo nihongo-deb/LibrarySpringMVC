@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Reader</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/library/readers/{id}(id=${reader.getId()})}" th:object="${reader}">
+  <label for="fio">FIO</label> <br>
+  <input type="text" id="fio" th:field="*{fio}"> <br>
+  <br>
+  <label for="email">Email</label> <br>
+  <input type="text" id="email" th:field="*{email}"> <br>
+  <br>
+  <label for="phone">Phone</label> <br>
+  <input type="text" id="phone" th:field="*{phone}"> <br>
+  <br>
+  <label for="birthday">Birthday</label> <br>
+  <input type="date" id="birthday" th:field="*{birthday}"> <br>
+  <br>
+  <input type="submit" value="Edit">
+  <br>
+</form>
+</body>
+</html>

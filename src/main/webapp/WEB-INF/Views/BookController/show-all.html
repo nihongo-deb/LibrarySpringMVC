@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Books</title>
+</head>
+<body>
+<br>
+<a href="http://localhost:8080/library/books/new">Add new book</a>
+<br>
+<table border="2">
+  <tr>
+<!--    <th>ID</th>-->
+    <th>BOOK TITLE</th>
+    <th>AUTHOR</th>
+    <th>READER</th>
+    <th>PUBLISHER</th>
+    <th>PUBLICATION YEAR</th>
+  </tr>
+
+  <tr th:each="book : ${books}">
+<!--    <td th:text="${book.getId()}"> </td>-->
+    <td>
+        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getId()})}"></a>
+    </td>
+    <td th:text="${book.getAuthor()}"> </td>
+    <td th:text="${book.getReader() != null} ? ${book.getReader().getFio()} : 'no reader'"> </td>
+    <td th:text="${book.getPublisher()}"> </td>
+    <td th:text="${book.getPublicationYear()}"> </td>
+  </tr>
+</table>
+</body>
+</html>

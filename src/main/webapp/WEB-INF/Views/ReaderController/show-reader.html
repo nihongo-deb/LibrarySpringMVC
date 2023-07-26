@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${reader.getFio()}">Reader</title>
+</head>
+<body>
+<h2>FIO</h2>
+<p th:text="${reader.getFio()}">fio</p>
+
+<h1>Email</h1>
+<p th:text="${reader.getEmail()}">email</p>
+
+<h1>Phone number</h1>
+<p th:text="${reader.getPhone()}">email</p>
+
+<h1>Birthday</h1>
+<p th:text="${reader.getBirthday()}">email</p>
+<hr>
+<br>
+<div th:if="${!reader.getBooks().isEmpty()}">
+    <h1>Books</h1>
+    <div th:each="book : ${reader.getBooks()}">
+        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getId()})}"></a>
+        <br>
+    </div>
+</div>
+<br>
+<a th:href="@{/library/readers/{id}/edit(id=${reader.getId()})}">Edit current reader</a>
+<hr>
+<form th:method="DELETE" th:action="@{{id}(id=${reader.getId()})}">
+    <input type="submit" value="DELETE">
+</form>
+</body>
+</html>

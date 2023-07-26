@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @created 02.07.2023
  */
 @Controller
-@RequestMapping("/library")
+@RequestMapping("/")
 public class FirstPageController {
     @GetMapping()
     public String showFirstPage(){

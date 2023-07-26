@@ -107,7 +107,7 @@ public class Reader {
         private String fio = "LastName FirstName Patronymic";
         private String email = "null@null.null";
         private String phone = "+00000000000";
-        private String birthday = "01.01.2500";
+        private String birthday = "2500-01-01";
         private List<Book> books = new ArrayList<>();
 
         public ReaderBuilder id(UUID id){

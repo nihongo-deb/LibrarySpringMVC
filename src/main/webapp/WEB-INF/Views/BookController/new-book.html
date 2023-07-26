@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New book</title>
+</head>
+<body>
+<form method="post" th:action="@{/library/books}" th:object="${newBook}">
+    <label for="title">Title</label> <br>
+    <input type="text" id="title" th:field="*{title}"> <br>
+    <br>
+    <label for="author">Title</label> <br>
+    <input type="text" id="author" th:field="*{author}"> <br>
+    <br>
+    <label for="publisher">Title</label> <br>
+    <input type="text" id="publisher" th:field="*{publisher}"> <br>
+    <br>
+    <label for="publicationYear">Title</label> <br>
+    <input type="number" id="publicationYear" th:field="*{publicationYear}"> <br>
+    <br>
+    <input type="submit" value="Add">
+    <br>
+</form>
+</body>
+</html>
