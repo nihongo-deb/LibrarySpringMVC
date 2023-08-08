@@ -20,9 +20,9 @@
 <h2>Reader:</h2>
 <div th:text="${book.getReader() != null} ? ${book.getReader().getFio()} : 'no reader'">Reader</div>
 <hr>
-<a th:href="@{/library/books/{id}/edit(id=${book.getId()})}">Edit book info</a>
+<a th:href="@{/library/books/{id}/edit(id=${book.getBookId()})}">Edit book info</a>
 <hr>
-<form th:method="DELETE" th:action="@{{id}(id=${book.getId()})}">
+<form th:method="DELETE" th:action="@{{id}(id=${book.getBookId()})}">
     <input type="submit" value="DELETE">
 </form>
 </body>

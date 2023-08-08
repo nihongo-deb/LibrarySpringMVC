@@ -21,7 +21,7 @@
   <tr th:each="book : ${books}">
 <!--    <td th:text="${book.getId()}"> </td>-->
     <td>
-        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getId()})}"></a>
+        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getBookId()})}"></a>
     </td>
     <td th:text="${book.getAuthor()}"> </td>
     <td th:text="${book.getReader() != null} ? ${book.getReader().getFio()} : 'no reader'"> </td>

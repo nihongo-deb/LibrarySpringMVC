@@ -1,6 +1,8 @@
 package org.nihongo_deb.Controllers;
 
+import org.nihongo_deb.DAO.BookDAO;
 import org.nihongo_deb.DAO.ReaderDAO;
+import org.nihongo_deb.Models.Book;
 import org.nihongo_deb.Models.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,12 @@ import java.util.UUID;
 @RequestMapping("library/readers")
 public class ReaderController {
     private ReaderDAO readerDAO;
+    private BookDAO bookDAO;
 
     @Autowired
-    public ReaderController(ReaderDAO readerDAO) {
+    public ReaderController(ReaderDAO readerDAO, BookDAO bookDAO) {
         this.readerDAO = readerDAO;
+        this.bookDAO = bookDAO;
     }
 
     @GetMapping()
@@ -36,10 +40,11 @@ public class ReaderController {
     }
 
     @GetMapping("/{id}")
-    public String shoeOne(@PathVariable("id") String id, Model model){
+    public String shoeOne(@PathVariable("id") String id, Model model, @ModelAttribute("emptyBook") Book emptyBook){
         Optional<Reader> reader = readerDAO.getById(UUID.fromString(id));
         if (reader.isPresent()){
             model.addAttribute("reader", reader.get());
+            model.addAttribute("books", bookDAO.getAll());
             return "ReaderController/show-reader";
         }
 

@@ -40,7 +40,7 @@ public class BookMapper implements RowMapper<Book> {
         String sql = "select * from readers where reader_id = (select reader_id from books where readers.reader_id=books.reader_id AND book_id=?);";
         Reader reader = jdbcTemplate.query(
                 sql,
-                new Object[]{book.getId()},
+                new Object[]{book.getBookId()},
                 readerMapper).stream().findAny().orElse(null);
 
         book.setReader(reader);

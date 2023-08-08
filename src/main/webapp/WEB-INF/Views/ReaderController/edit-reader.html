@@ -5,7 +5,7 @@
     <title>Edit Reader</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/library/readers/{id}(id=${reader.getId()})}" th:object="${reader}">
+<form th:method="PATCH" th:action="@{/library/readers/{id}(id=${reader.getReaderId()})}" th:object="${reader}">
   <label for="fio">FIO</label> <br>
   <input type="text" id="fio" th:field="*{fio}"> <br>
   <br>

@@ -5,6 +5,8 @@
     <title th:text="${reader.getFio()}">Reader</title>
 </head>
 <body>
+<h3 th:text="${reader.getReaderId()}">id</h3>
+<hr>
 <h2>FIO</h2>
 <p th:text="${reader.getFio()}">fio</p>
 
@@ -21,14 +23,23 @@
 <div th:if="${!reader.getBooks().isEmpty()}">
     <h1>Books</h1>
     <div th:each="book : ${reader.getBooks()}">
-        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getId()})}"></a>
+        <a th:text="${book.getTitle()}" th:href="@{http://localhost:8080/library/books/{id}(id=${book.getBookId()})}"></a>
         <br>
     </div>
 </div>
 <br>
-<a th:href="@{/library/readers/{id}/edit(id=${reader.getId()})}">Edit current reader</a>
+<a th:href="@{/library/readers/{id}/edit(id=${reader.getReaderId()})}">Edit current reader</a>
 <hr>
-<form th:method="DELETE" th:action="@{{id}(id=${reader.getId()})}">
+<form th:method="PATCH" th:action="@{/library/books/get}">
+    <label for="book">Choose free book</label>
+    <select th:object="${emptyBook}" th:field="*{bookId}" id="book">
+        <option th:each="book : ${books}" th:value="${book.getBookId()}" th:text="${book.getTitle()}">
+        </option>
+    </select>
+    <input type="submit" value="Get selected book">
+</form>
+<hr>
+<form th:method="DELETE" th:action="@{{id}(id=${reader.getReaderId()})}">
     <input type="submit" value="DELETE">
 </form>
 </body>

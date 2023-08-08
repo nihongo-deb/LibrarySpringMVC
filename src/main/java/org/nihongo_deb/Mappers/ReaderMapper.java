@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -39,7 +38,7 @@ public class ReaderMapper implements RowMapper<Reader> {
                 .build();
 
         String sql = "select * from books where reader_id=?";
-        reader.setBooks(jdbcTemplate.query(sql, new Object[]{reader.getId()}, bookMapper));
+        reader.setBooks(jdbcTemplate.query(sql, new Object[]{reader.getReaderId()}, bookMapper));
         return reader;
     }
 }

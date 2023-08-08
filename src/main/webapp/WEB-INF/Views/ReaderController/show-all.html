@@ -18,7 +18,7 @@
 
   <tr th:each="reader : ${readers}">
     <td>
-        <a th:text="${reader.getFio()}" th:href="@{http://localhost:8080/library/readers/{id}(id=${reader.getId()})}"></a>
+        <a th:text="${reader.getFio()}" th:href="@{http://localhost:8080/library/readers/{id}(id=${reader.getReaderId()})}"></a>
     </td>
     <td th:text="${reader.getEmail()}"> </td>
     <td th:text="${reader.getPhone()}"> </td>

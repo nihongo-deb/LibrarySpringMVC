@@ -2,6 +2,7 @@ package org.nihongo_deb.Controllers;
 
 import org.nihongo_deb.DAO.BookDAO;
 import org.nihongo_deb.Models.Book;
+import org.nihongo_deb.Models.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,8 +76,19 @@ public class BookController {
     }
 
     @PatchMapping("/{id}")
-    public String updateSimpleExample(@PathVariable("id") String id, @ModelAttribute("book") Book book){
+    public String updateBook(@PathVariable("id") String id, @ModelAttribute("book") Book book){
         bookDAO.update(UUID.fromString(id), book);
         return "redirect:/library/books";
+    }
+
+    @PatchMapping("/get")
+    public String getBook(@ModelAttribute("reader") Reader reader, @ModelAttribute("book") Book book){
+        System.out.println("reader_id: " + reader.getReaderId());
+        System.out.println("book_id: " + book.getBookId());
+        Book bookFromDB = bookDAO.getById(book.getBookId()).get();
+        bookFromDB.setReader(reader);
+        bookDAO.update(bookFromDB.getBookId(), bookFromDB);
+
+        return "redirect:/library/readers/" + reader.getReaderId();
     }
 }

@@ -8,7 +8,7 @@ import java.util.UUID;
  * @created 05.07.2023
  */
 public class Book {
-    private UUID id;
+    private UUID bookId;
     private String title;
     private String author;
     private int publicationYear;
@@ -26,12 +26,12 @@ public class Book {
         this.reader = reader;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getBookId() {
+        return bookId;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setBookId(UUID bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {
@@ -129,7 +129,7 @@ public class Book {
 
         public Book build(){
             Book book = new Book(title, author, publicationYear, publisher, reader);
-            book.setId(this.id);
+            book.setBookId(this.id);
             return book;
         }
     }

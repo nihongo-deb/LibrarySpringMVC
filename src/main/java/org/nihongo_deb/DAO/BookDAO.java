@@ -4,7 +4,6 @@ import org.nihongo_deb.Mappers.BookMapper;
 import org.nihongo_deb.Models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -61,7 +60,8 @@ public class BookDAO implements DAO <Book, UUID>{
                         book_title=?,
                         book_author=?,
                         book_publisher=?,
-                        book_publication_year=?
+                        book_publication_year=?,
+                        reader_id=?
                         where book_id=?
                      """;
         jdbcTemplate.update(
@@ -70,6 +70,7 @@ public class BookDAO implements DAO <Book, UUID>{
                 entity.getAuthor(),
                 entity.getPublisher(),
                 entity.getPublicationYear(),
+                entity.getReader() == null ? null : entity.getReader().getReaderId(),
                 id
         );
     }
